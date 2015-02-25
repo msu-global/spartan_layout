@@ -1,0 +1,10 @@
+name = Spartan Layout
+description = Panel's layouts for the Spartan theme.
+package = Spartan
+dependencies[] = panels
+core = 7.x
+version = 7.x-1.0
+
+files[] = plugins/views/spartan_grid/spartan_grid_plugin_style.inc
+
+exclude[css][] = 'sites/all/themes/bootstrap/css/overrides.css'

@@ -1,0 +1,159 @@
+<?php
+
+/**
+ * Implements hook_ctools_plugin_directory()
+ */
+function spartan_layout_ctools_plugin_directory($module, $plugin) {
+  if ($module == "panels" && in_array($plugin, array('layouts', 'styles'))) {
+    return "plugins/panels/$plugin";
+  }
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function spartan_layout_views_api() {
+  return array(
+    'api' => '3.0',
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function spartan_layout_block_info() {
+  // This example comes from node.module.
+  $blocks['login'] = array(
+    'info' => t('Spartan Login'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function spartan_layout_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'login':
+      $block['subject'] = t('Login');
+      $block['content'] = drupal_get_form('spartan_layout_login_form');
+      break;
+  }
+
+  return $block;
+}
+
+
+
+function spartan_layout_login_form($form, &$form_state) {
+  global $user;
+
+  // If we are already logged on, go to the user page instead.
+  if (user_is_logged_in()) {
+    $form['message'] = array(
+      '#markup' => '<p>Welcome ' . $user->name . ', you are logged in.  <a href="/user/logout">Log out</a></p>'
+    );
+  }
+  else {
+    $form = array(
+      '#action' => url(current_path(), array('query' => drupal_get_destination(), 'external' => FALSE)),
+      '#id' => 'user-login-form',
+      '#validate' => user_login_default_validators(),
+      'msu_login' => array(
+        '#markup' => '<p><em>Michigan State University users login <a href="https://gcfsiknowledge.msu.edu/Shibboleth.sso/Login?target=https%3A%2F%2Fgcfsiknowledge.msu.edu%2F%3Fq%3Dshib_login%2Fnode">here</a></em></p>',
+      ),
+      'drupal_login' => array(
+        'name' => array('#type' => 'textfield',
+          '#title' => t('Username'),
+          '#maxlength' => USERNAME_MAX_LENGTH,
+          '#size' => 15,
+          '#required' => TRUE,
+        ),
+        'pass' =>array('#type' => 'password',
+          '#title' => t('Password'),
+          '#size' => 15,
+          '#required' => TRUE,
+        ),
+        'actions' => array(
+          '#type' => 'actions',
+          'submit' => array(
+            '#type' => 'submit',
+            '#value' => t('Log in'),
+          ),
+        ),
+      ),
+
+    );
+    $form['#submit'][] = 'user_login_submit';
+
+
+    $items = array();
+    if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
+      $items[] = l(t('Create new account'), 'user/register', array('attributes' => array('title' => t('Create a new user account.'))));
+    }
+    $items[] = l(t('Request new password'), 'user/password', array('attributes' => array('title' => t('Request new password via e-mail.'))));
+    $form['links'] = array('#markup' => theme('item_list', array('items' => $items)));
+    return $form;
+  }
+
+  return $form;
+}
+
+/**
+ * Sort items by rows and columns.
+ *
+ * @param $vars
+ * @param $columns
+ * @param bool $horizontal
+ *
+ * @return array
+ *
+ */
+function _spartan_layout_sort_rows($vars, $columns, $horizontal = TRUE) {
+  $col = 0;
+  $row = 0;
+  $items = array();
+  $remainders = count($vars['rows']) % $columns;
+  $num_rows = floor(count($vars['rows']) / $columns);
+
+  // Iterate over each rendered views result row.
+  foreach ($vars['rows'] as $item) {
+    // Add the item.
+    if ($horizontal) {
+      $items[$row]['content'][$col]['content'] = $item;
+    }
+    else {
+      $items[$col]['content'][$row]['content'] = $item;
+    }
+
+    // Increase, decrease or reset appropriate integers.
+    if ($horizontal) {
+      if ($col == 0 && $col != ($columns - 1)) {
+        $col++;
+      }
+      elseif ($col >= ($columns - 1)) {
+        $col = 0;
+        $row++;
+      }
+      else {
+        $col++;
+      }
+    }
+    else {
+      $row++;
+      if (!$remainders && $row == $num_rows) {
+        $row = 0;
+        $col++;
+      }
+      elseif ($remainders && $row == $num_rows + 1) {
+        $row = 0;
+        $col++;
+        $remainders--;
+      }
+    }
+  }
+
+  return $items;
+}
