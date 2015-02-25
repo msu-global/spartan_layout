@@ -11,13 +11,10 @@ $plugin = array(
   'theme' => 'spartan_homepage',
   'admin css' => '../spartan-layout-admin.css',
   'regions' => array(
-    'top' => t('Top'),
+    'hero' => t('Hero'),
     'upper_left' => t('Upper left'),
     'upper_middle' => t('Upper middle'),
     'upper_right' => t('Upper right'),
     'break' => t('Full-width page break'),
-    'footer_left' => t('Footer left'),
-    'footer_middle' => t('Footer Middle'),
-    'footer_right' => t('Footer right'),
   ),
 );

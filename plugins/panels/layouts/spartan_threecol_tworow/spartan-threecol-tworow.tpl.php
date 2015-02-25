@@ -1,33 +1,47 @@
-<?php if ($content['top']): ?>
+<?php if (!empty($content['upper_left']) || !empty($content['upper_middle']) || !empty($content['upper_right'])): ?>
   <div class="row">
-    <?php print $content['top']; ?>
+
+    <?php if !empty($content['upper_left']): ?>
+      <div class="col-sm-4">
+        <?php print $content['upper_left']; ?>
+      </div>
+    <?php endif ?>
+
+    <?php if !empty($content['upper_middle']): ?>
+      <div class="col-sm-4">
+        <?php print $content['upper_middle']; ?>
+      </div>
+    <?php endif ?>
+
+    <?php if !empty($content['upper_right']): ?>
+      <div class="col-sm-4">
+        <?php print $content['upper_right']; ?>
+      </div>
+    <?php endif ?>
+
   </div>
 <?php endif ?>
 
-<?php if ($content['upper_left'] || $content['upper_middle'] || $content['upper_right']): ?>
+<?php if (!empty($content['lower_left']) || !empty($content['lower_middle']) || !empty($content['lower_right'])): ?>
   <div class="row">
-    <?php print $content['upper_left']; ?>
-    <?php print $content['upper_middle']; ?>
-    <?php print $content['upper_right']; ?>
-  </div>
-<?php endif ?>
 
-<?php if ($content['middle']): ?>
-  <div class="row">
-    <?php print $content['middle']; ?>
-  </div>
-<?php endif ?>
+    <?php if !empty($content['lower_left']): ?>
+      <div class="col-sm-4">
+        <?php print $content['lower_left']; ?>
+      </div>
+    <?php endif ?>
 
-<?php if ($content['lower_left'] || $content['lower_middle'] || $content['lower_right']): ?>
-  <div class="row">
-    <?php print $content['lower_left']; ?>
-    <?php print $content['lower_middle']; ?>
-    <?php print $content['lower_right']; ?>
-  </div>
-<?php endif ?>
+    <?php if !empty($content['lower_middle']): ?>
+      <div class="col-sm-4">
+        <?php print $content['lower_middle']; ?>
+      </div>
+    <?php endif ?>
 
-<?php if ($content['middle']): ?>
-  <div class="row">
-    <?php print $content['middle']; ?>
+    <?php if !empty($content['lower_right']): ?>
+      <div class="col-sm-4">
+        <?php print $content['lower_right']; ?>
+      </div>
+    <?php endif ?>
+
   </div>
 <?php endif ?>

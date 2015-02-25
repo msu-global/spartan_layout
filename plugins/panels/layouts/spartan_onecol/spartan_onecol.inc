@@ -5,13 +5,12 @@
  */
 // Plugin definition
 $plugin = array(
-  'title' => t('Spartan Two Column'),
+  'title' => t('Spartan One Column'),
   'category' => t('Spartan'),
-  'icon' => 'spartan_twocol.png',
-  'theme' => 'spartan_twocol',
+  'icon' => 'spartan_onecol.png',
+  'theme' => 'spartan_onecol',
   'admin css' => '../spartan-layout-admin.css',
   'regions' => array(
-    'left' => t('Left'),
-    'right' => t('Right'),
+    'main' => t('Main'),
   ),
 );

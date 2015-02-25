@@ -5,15 +5,14 @@
  */
 // Plugin definition
 $plugin = array(
-  'title' => t('Two Columns Stacked'),
+  'title' => t('Spartan Three Equal Columns'),
   'category' => t('Spartan'),
-  'icon' => 'spartan_twocol_stacked.png',
-  'theme' => 'spartan_twocol_stacked',
+  'icon' => 'spartan_threecol_equal.png',
+  'theme' => 'spartan_threecol_equal',
   'admin css' => '../spartan-layout-admin.css',
   'regions' => array(
-    'top' => t('Top'),
     'left' => t('Left'),
+    'middle' => t('Middle'),
     'right' => t('Right'),
-    'bottom' => t('Bottom'),
   ),
 );
