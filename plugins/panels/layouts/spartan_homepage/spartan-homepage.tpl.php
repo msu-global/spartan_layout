@@ -1,10 +1,25 @@
 <div class="<?php print $classes ?>" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
-  <?php if ($content['hero']): ?>
+
+  <?php if (!empty($content['slogan']) || !empty($content['hero'])): ?>
     <div class="hero-container">
       <div class="container">
-        <div class="row">
-          <?php print $content['hero']; ?>
-        </div>
+
+        <?php if (!empty($content['slogan'])): ?>
+          <div class="row">
+            <div class="col-xs-12">
+              <?php print $content['slogan']; ?>
+            </div>
+          </div>
+        <?php endif ?>
+
+        <?php if (!empty($content['hero'])): ?>
+          <div class="row">
+            <div class="col-sm-4 col-sm-offset-8">
+              <?php print $content['hero']; ?>
+            </div>
+          </div>
+        <?php endif ?>
+
       </div>
     </div>
   <?php endif ?>
@@ -12,7 +27,6 @@
   <?php if ($content['upper_left'] || $content['upper_middle'] || $content['upper_right']): ?>
     <div class="section-container">
       <div class="row">
-        <div class="col-xs-12"><h2 class="spartan-heading">What is a knowledge platform?</h2></div>
         <div class="col-sm-4">
           <?php print $content['upper_left']; ?>
         </div>
@@ -29,9 +43,6 @@
   <?php if ($content['break']): ?>
     <div class="break-container">
       <div class="container">
-        <div class="row">
-          <div class="col-xs-12"><h2 class="break-heading">Latest Articles</h2></div>
-        </div>
         <?php
           // This section contains a View, which generates its own rows.
           print $content['break'];

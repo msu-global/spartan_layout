@@ -1,4 +1,4 @@
-<div class="<?php print $classes ?>" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
+<div class="<?php xdebug_break(); print $classes ?>" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
     <div class="row">
 
       <?php if (!empty($content['left'])): ?>

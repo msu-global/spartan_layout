@@ -5,7 +5,7 @@
 
         <?php if (!empty($content['upper_left'])): ?>
           <div class="col-sm-8">
-            <?php print $content['upper_eft']; ?>
+            <?php print $content['upper_left']; ?>
           </div>
         <?php endif ?>
 

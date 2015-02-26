@@ -11,6 +11,7 @@ $plugin = array(
   'theme' => 'spartan_homepage',
   'admin css' => '../spartan-layout-admin.css',
   'regions' => array(
+    'slogan' => t('Slogan'),
     'hero' => t('Hero'),
     'upper_left' => t('Upper left'),
     'upper_middle' => t('Upper middle'),

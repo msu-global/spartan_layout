@@ -7,6 +7,9 @@ function spartan_layout_ctools_plugin_directory($module, $plugin) {
   if ($module == "panels" && in_array($plugin, array('layouts', 'styles'))) {
     return "plugins/panels/$plugin";
   }
+  elseif ($module == 'ctools' && !empty($plugin) && in_array($plugin, array('content_types'))) {
+    return 'plugins/' . $plugin;
+  }
 }
 
 /**
@@ -22,7 +25,6 @@ function spartan_layout_views_api() {
  * Implements hook_block_info().
  */
 function spartan_layout_block_info() {
-  // This example comes from node.module.
   $blocks['login'] = array(
     'info' => t('Spartan Login'),
     'cache' => DRUPAL_NO_CACHE,
@@ -31,7 +33,8 @@ function spartan_layout_block_info() {
 }
 
 /**
- * Implements hook_block_view().
+ * Implements hook_block_view().  Eventually this should move to a CTools
+ * content_types plugin.
  */
 function spartan_layout_block_view($delta = '') {
   $block = array();
@@ -100,3 +103,61 @@ function spartan_layout_login_form($form, &$form_state) {
 
   return $form;
 }
+
+/**
+ * Sort items by rows and columns.
+ *
+ * @param $vars
+ * @param $columns
+ * @param bool $horizontal
+ *
+ * @return array
+ *
+ */
+function _spartan_layout_sort_rows($vars, $columns, $horizontal = TRUE) {
+  $col = 0;
+  $row = 0;
+  $items = array();
+  $remainders = count($vars['rows']) % $columns;
+  $num_rows = floor(count($vars['rows']) / $columns);
+
+  // Iterate over each rendered views result row.
+  foreach ($vars['rows'] as $item) {
+    // Add the item.
+    if ($horizontal) {
+      $items[$row]['content'][$col]['content'] = $item;
+    }
+    else {
+      $items[$col]['content'][$row]['content'] = $item;
+    }
+
+    // Increase, decrease or reset appropriate integers.
+    if ($horizontal) {
+      if ($col == 0 && $col != ($columns - 1)) {
+        $col++;
+      }
+      elseif ($col >= ($columns - 1)) {
+        $col = 0;
+        $row++;
+      }
+      else {
+        $col++;
+      }
+    }
+    else {
+      $row++;
+      if (!$remainders && $row == $num_rows) {
+        $row = 0;
+        $col++;
+      }
+      elseif ($remainders && $row == $num_rows + 1) {
+        $row = 0;
+        $col++;
+        $remainders--;
+      }
+    }
+  }
+
+  return $items;
+}
+
