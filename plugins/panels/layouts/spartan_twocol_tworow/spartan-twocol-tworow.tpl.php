@@ -3,17 +3,13 @@
     <?php if (!empty($content['upper_left']) || !empty($content['upper_right'])): ?>
       <div class="row">
 
-        <?php if (!empty($content['upper_left'])): ?>
-          <div class="col-sm-8">
-            <?php print $content['upper_left']; ?>
-          </div>
-        <?php endif ?>
+        <div class="col-sm-8">
+          <?php if (!empty($content['upper_left'])) { print $content['upper_left']; } ?>
+        </div>
 
-        <?php if (!empty($content['upper_right'])): ?>
-          <div class="col-sm-4">
-            <?php print $content['upper_right']; ?>
-          </div>
-        <?php endif ?>
+        <div class="col-sm-4">
+          <?php if (!empty($content['upper_right'])) { print $content['upper_right']; } ?>
+        </div>
 
       </div>
     <?php endif ?>
@@ -21,17 +17,13 @@
     <?php if (!empty($content['lower_left']) || !empty($content['lower_right'])): ?>
       <div class="row">
 
-        <?php if (!empty($content['lower_left'])): ?>
-          <div class="col-sm-8">
-            <?php print $content['lower_left']; ?>
-          </div>
-        <?php endif ?>
+        <div class="col-sm-8">
+          <?php if (!empty($content['lower_left'])) { print $content['lower_left']; } ?>
+        </div>
 
-        <?php if (!empty($content['lower_right'])): ?>
-          <div class="col-sm-4">
-            <?php print $content['lower_right']; ?>
-          </div>
-        <?php endif ?>
+        <div class="col-sm-4">
+          <?php if (!empty($content['lower_right'])) { print $content['lower_right']; } ?>
+        </div>
 
       </div>
     <?php endif ?>

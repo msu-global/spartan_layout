@@ -25,6 +25,21 @@ function spartan_layout_views_plugins() {
         'uses options' => TRUE,
         'type' => 'normal',
       ),
+      'views_spartan_table_plugin_style' => array(
+        'title' => t('Spartan Table'),
+        'help' => t('Spartan Table Style'),
+        'path' => $module_path . '/plugins/views/spartan_table',
+        'handler' => 'ViewsSpartanTablePluginStyle',
+        'parent' => 'table',
+        'theme' => 'spartan_table_plugin_style',
+        'theme path' => $module_path . '/templates/spartan_table',
+        'theme file' => 'theme.inc',
+        'uses row plugin' => FALSE,
+        'uses row class' => TRUE,
+        'uses fields' => TRUE,
+        'uses options' => TRUE,
+        'type' => 'normal',
+      ),
     ),
   );
 

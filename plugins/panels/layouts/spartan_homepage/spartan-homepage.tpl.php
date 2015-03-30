@@ -1,3 +1,4 @@
+
 <div class="<?php print $classes ?>" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
 
   <?php if (!empty($content['slogan']) || !empty($content['hero'])): ?>
@@ -50,24 +51,5 @@
       </div>
     </div>
   <?php endif ?>
-
-    <div class="section-container">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-3">
-            <h3 class="partner-logo">Partner Logo</h3>
-          </div>
-          <div class="col-xs-3">
-            <h3 class="partner-logo">Partner Logo</h3>
-          </div>
-          <div class="col-xs-3">
-            <h3 class="partner-logo">Partner Logo</h3>
-          </div>
-          <div class="col-xs-3">
-            <h3 class="partner-logo">Partner Logo</h3>
-          </div>
-        </div>
-      </div>
-    </div>
 
 </div>

@@ -1,23 +1,17 @@
 <?php if (!empty($content['left']) || !empty($content['middle']) || !empty($content['right'])): ?>
   <div class="row">
 
-    <?php if (!empty($content['left'])): ?>
-      <div class="col-sm-4">
-        <?php print $content['left']; ?>
-      </div>
-    <?php endif ?>
+    <div class="col-sm-4">
+      <?php if (!empty($content['left'])) { print $content['left']; } ?>
+    </div>
 
-    <?php if (!empty($content['middle'])): ?>
-      <div class="col-sm-4">
-        <?php print $content['middle']; ?>
-      </div>
-    <?php endif ?>
+    <div class="col-sm-4">
+      <?php if (!empty($content['middle'])) { print $content['middle']; } ?>
+    </div>
 
-    <?php if (!empty($content['right'])): ?>
-      <div class="col-sm-4">
-        <?php print $content['right']; ?>
-      </div>
-    <?php endif ?>
+    <div class="col-sm-4">
+      <?php if (!empty($content['right'])) { print $content['right']; } ?>
+    </div>
 
   </div>
 <?php endif ?>

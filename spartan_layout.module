@@ -5,10 +5,14 @@
  */
 function spartan_layout_ctools_plugin_directory($module, $plugin) {
   if ($module == "panels" && in_array($plugin, array('layouts', 'styles'))) {
-    return "plugins/panels/$plugin";
+    return 'plugins/panels/' . $plugin;
   }
   elseif ($module == 'ctools' && !empty($plugin) && in_array($plugin, array('content_types'))) {
     return 'plugins/' . $plugin;
+  }
+  elseif ($module == 'advanced_forum') {
+
+    return 'plugins/advanced_forum/' . $plugin;
   }
 }
 
@@ -19,6 +23,30 @@ function spartan_layout_views_api() {
   return array(
     'api' => '3.0',
   );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function spartan_layout_form_alter(&$form, &$form_state, $form_id) {
+
+  switch ($form_id) {
+    case 'masquerade_block_1':
+      // Remove unnecessary markup that interferes with the theme.
+      unset($form['masquerade_user_field']['#prefix']);
+      unset($form['submit']['#suffix']);
+      break;
+    case 'advanced_forum_forum_topic_list_sort_form':
+      // Make this form use Bootstrap inline form styling.
+      $form['#attributes']['class'][] = 'form-inline';
+      $form['order'] = $form['inline']['order'];
+      $form['sort'] = $form['inline']['sort'];
+      $form['submit'] = $form['inline']['submit'];
+      unset($form['inline']);
+
+      $form['order']['#title'] = t('Sort this forum');
+      break;
+  }
 }
 
 /**

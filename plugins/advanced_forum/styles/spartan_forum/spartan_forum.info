@@ -1,0 +1,4 @@
+name = Spartan Forum
+description = Forum style for the Spartan theme.
+version = 1.x
+base style = naked

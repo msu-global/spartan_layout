@@ -27,7 +27,7 @@ function spartan_layout_html_edit_form($form, &$form_state) {
   $form['html'] = array(
     '#type' => 'select',
     '#title' => t('HTML'),
-    '#options' => drupal_map_assoc(array('blog', 'forum', 'library')),
+    '#options' => drupal_map_assoc(array('blog', 'forum', 'library', 'about', 'partners', 'mission')),
     '#description' => t('The custom HTML content to display.'),
     '#default_value' => !empty($conf['html']) ? $conf['html'] : key($options),
   );
@@ -57,6 +57,7 @@ function spartan_layout_html_edit_form_submit($form, &$form_state) {
  * @return stdClass
  */
 function spartan_layout_html_render($subtype, $conf, $args, $context) {
+  global $base_url;
   $block = new stdClass();
 
   $selection = $conf['html'];
@@ -64,20 +65,35 @@ function spartan_layout_html_render($subtype, $conf, $args, $context) {
 
   $html['blog'] = <<<EOT
 <i class="fa fa-newspaper-o"></i>
-<h2><a href="//google.com">Current Events</a></h2>
-<p>A knowledge platform is built around a community, and here you can learn the latest news and advice from the individuals that make up this community.  This is placeholder text that can be changed to anything.  This is placeholder text that can be changed to anything.</p>
+<h2><a href="$base_url/blog">Current Events</a></h2>
+<p>A knowledge platform is built around a community, and here you can learn the latest news and advice from the individuals that make up this community.  The Knowledge Platform features several blogs from our staff writers.</p>
 EOT;
 
   $html['forum'] = <<<EOT
 <i class="fa fa-comments-o"></i>
-<h2><a href="//google.com">Forums</a></h2>
-<p>Discussion is a vital part of what we do.  Within the knowledge platform, our discussions are integrated with the toolset to accomplish useful work.  This is placeholder text that can be changed to anything.  This is placeholder text that can be changed to anything.</p>
+<h2><a href="$base_url/forum">Forums</a></h2>
+<p>The Knowledge Platform provides several forums related to the GCFSI mission.  These forums can be used as a place for discussion, and also tied in with other resources within the Knowledge Platform.</p>
 EOT;
 
   $html['library'] = <<<EOT
   <i class="fa fa-book"></i>
-  <h2><a href="//google.com">Document Library</a></h2>
-  <p>Part of our work revolves around reviewing scholarly documents, and the knowledge platform provides a place for this to happen.  This is placeholder text that can be changed to anything.  This is placeholder text that can be changed to anything.</p>
+  <h2><a href="$base_url/library">Document Library</a></h2>
+  <p>The Knowledge Platform intelligently stores resources in many different formats.  These could be scholarly documents, videos, pictures, or links to other resources on the Internet.  The Knowledge Platform has built-in support to reuse these resources in many of the other tools we offer.</p>
+EOT;
+
+  $html['about'] = <<<EOT
+  <h2><i class="fa fa-pencil"></i> About the Knowledge Platform</h2>
+  <p>The Knowledge Platform is an open-source technology platform leveraging the stregths of modern web technologies.  It provides a technical framework to store data, collaborate, and communicate.</p>
+EOT;
+
+  $html['partners'] = <<<EOT
+  <h2><i class="fa fa-users"></i> Our partners</h2>
+  <p>The Knowledge Platform is made possible by federal grants, private donations, and participation from the GCFSI's consortium partners.</p>
+EOT;
+
+  $html['mission'] = <<<EOT
+  <h2><i class="fa fa-graduation-cap"></i> Our Mission</h2>
+  <p>To provide a technological platform for the GCFSI to create, test, and enable scaling of effective solutions and evidence-based approaches to a defined set of future critical global trends impacting food systems.</p>
 EOT;
 
   $block->content = $html[$selection];
