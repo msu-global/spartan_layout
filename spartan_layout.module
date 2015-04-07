@@ -29,7 +29,6 @@ function spartan_layout_views_api() {
  * Implements hook_form_alter().
  */
 function spartan_layout_form_alter(&$form, &$form_state, $form_id) {
-
   switch ($form_id) {
     case 'masquerade_block_1':
       // Remove unnecessary markup that interferes with the theme.
@@ -45,6 +44,13 @@ function spartan_layout_form_alter(&$form, &$form_state, $form_id) {
       unset($form['inline']);
 
       $form['order']['#title'] = t('Sort this forum');
+      break;
+    // Hide the image field, since it's been replaced by the media field, and
+    // we want to keep it until the images are migrated over.
+    case 'blog_node_form':
+      if (!empty($form['field_image'])) {
+        $form['field_image']['#type'] = 'hidden';
+      }
       break;
   }
 }
