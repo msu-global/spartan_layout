@@ -27,7 +27,7 @@ function spartan_layout_html_edit_form($form, &$form_state) {
   $form['html'] = array(
     '#type' => 'select',
     '#title' => t('HTML'),
-    '#options' => drupal_map_assoc(array('blog', 'forum', 'library', 'about', 'partners', 'mission')),
+    '#options' => drupal_map_assoc(array('blog', 'forum', 'library', 'services', 'about', 'partners', 'mission')),
     '#description' => t('The custom HTML content to display.'),
     '#default_value' => !empty($conf['html']) ? $conf['html'] : key($options),
   );
@@ -79,6 +79,12 @@ EOT;
   <i class="fa fa-book"></i>
   <h2><a href="$base_url/library">Document Library</a></h2>
   <p>The Knowledge Platform intelligently stores resources in many different formats.  These could be scholarly documents, videos, pictures, or links to other resources on the Internet.  The Knowledge Platform has built-in support to reuse these resources in many of the other tools we offer.</p>
+EOT;
+
+  $html['services'] = <<<EOT
+  <i class="fa fa-gears"></i>
+  <h2><a href="$base_url/services">Web Services</a></h2>
+  <p>The Knowledge Platform provides a convenient back-end for mobile apps, web sites, and other web services through the use of a powerful entity system and a clever services framework.  Security, storage, and performance are ready out-of-the-box, as well as many server-side RESTful features.</p>
 EOT;
 
   $html['about'] = <<<EOT
