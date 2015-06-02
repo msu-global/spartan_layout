@@ -83,7 +83,7 @@ EOT;
 
   $html['services'] = <<<EOT
   <i class="fa fa-gears"></i>
-  <h2><a href="$base_url/services">Web Services</a></h2>
+  <h2><a href="//github.com/RESTful-Drupal/restful">Web Services</a></h2>
   <p>The Knowledge Platform provides a convenient back-end for mobile apps, web sites, and other web services through the use of a powerful entity system and a clever services framework.  Security, storage, and performance are ready out-of-the-box, as well as many server-side RESTful features.</p>
 EOT;
 

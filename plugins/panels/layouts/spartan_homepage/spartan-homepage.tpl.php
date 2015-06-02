@@ -2,7 +2,8 @@
 <div class="<?php print $classes ?>" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
 
   <?php if (!empty($content['slogan']) || !empty($content['hero'])): ?>
-    <div id="hero-background" class="css3-background-fix"></div><div class="hero-container">
+    <div id="hero-background"></div>
+    <div class="hero-container">
 
       <div class="container">
 
@@ -50,12 +51,22 @@
     </div>
   <?php endif ?>
 
-  <?php if ($content['break']): ?>
-    <div class="break-container">
+  <div class="break-container">
+    <div class="container">
+      <?php
+        if ($content['break']) {
+          print $content['break'];
+        }
+      ?>
+    </div>
+  </div>
+
+  <?php if ($content['lower_full']): ?>
+    <div class="section-container">
       <div class="container">
         <?php
           // This section contains a View, which generates its own rows.
-          print $content['break'];
+          print $content['lower_full'];
         ?>
       </div>
     </div>

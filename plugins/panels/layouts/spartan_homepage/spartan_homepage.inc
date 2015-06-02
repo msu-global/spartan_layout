@@ -18,5 +18,6 @@ $plugin = array(
     'upper_middle_right' => t('Upper middle right'),
     'upper_right' => t('Upper right'),
     'break' => t('Full-width page break'),
+    'lower_full' => t('Full-width lower area'),
   ),
 );
