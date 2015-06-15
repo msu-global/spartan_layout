@@ -2,7 +2,6 @@
 <div class="<?php print $classes ?>" <?php if (!empty($css_id)) { print "id=\"$css_id\""; } ?>>
 
   <?php if (!empty($content['slogan']) || !empty($content['hero'])): ?>
-    <div id="hero-background"></div>
     <div class="hero-container">
 
       <div class="container">
