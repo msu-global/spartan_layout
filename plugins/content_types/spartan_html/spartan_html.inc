@@ -129,8 +129,8 @@ EOT;
   $html['services-legacy'] = <<<EOT
   <div class="service-purpose">
     <i class="fa fa-desktop"></i>
-    <h2>Integrate with a legacy system</h2>
-    <p>There's plenty of stable, mature software solutions already in the marketplace.  With the Knowledge Platform's web services, any application that understands HTTP can connect to them.  In cases where the Knowledge Platform is being used in conjunction with a legacy desktop app, this can cut down on double-entry and limit the time spent maintaining two separate systems.</p>
+    <h2>Integrate with a legacy system.</h2>
+    <p>There's plenty of stable, mature software solutions already in the marketplace.  Any application that understands HTTP can use the Knowledge Platform's web services.  In cases where the Knowledge Platform is being used in conjunction with a legacy desktop app, this can cut down on double-entry and limit the time spent maintaining two separate systems.</p>
   </div>
 EOT;
 
