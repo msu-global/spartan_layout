@@ -16,7 +16,7 @@
 
         <?php if (!empty($content['hero'])): ?>
           <div class="row">
-            <div class="col-sm-4 col-sm-offset-8">
+            <div class="col-lg-4 col-lg-offset-8 col-sm-6 col-sm-offset-6">
               <?php print $content['hero']; ?>
             </div>
           </div>
@@ -26,7 +26,7 @@
     </div>
   <?php endif ?>
 
-  <?php if ($content['upper_left'] || $content['upper_middle'] || $content['upper_right']): ?>
+  <?php if ($content['upper_left'] || $content['upper_middle_left'] || $content['upper_middle_right'] || $content['upper_right']): ?>
     <div class="section-container">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
