@@ -27,7 +27,7 @@ function spartan_layout_html_edit_form($form, &$form_state) {
   $form['html'] = array(
     '#type' => 'select',
     '#title' => t('HTML'),
-    '#options' => drupal_map_assoc(array('blog', 'forum', 'library', 'services', 'about', 'partners', 'mission')),
+    '#options' => drupal_map_assoc(array('blog', 'forum', 'library', 'services', 'about', 'partners', 'mission', 'services-hero', 'services-websites', 'services-apps', 'services-legacy')),
     '#description' => t('The custom HTML content to display.'),
     '#default_value' => !empty($conf['html']) ? $conf['html'] : key($options),
   );
@@ -83,7 +83,7 @@ EOT;
 
   $html['services'] = <<<EOT
   <i class="fa fa-gears"></i>
-  <h2><a href="//github.com/RESTful-Drupal/restful">Web Services</a></h2>
+  <h2><a href="$base_url/services">Web Services</a></h2>
   <p>The Knowledge Platform provides a convenient back-end for mobile apps, web sites, and other web services through the use of a powerful entity system and a clever services framework.  Security, storage, and performance are ready out-of-the-box, as well as many server-side RESTful features.</p>
 EOT;
 
@@ -100,6 +100,38 @@ EOT;
   $html['mission'] = <<<EOT
   <h2><i class="fa fa-graduation-cap"></i> Our Mission</h2>
   <p>To provide a technological platform for the GCFSI to create, test, and enable scaling of effective solutions and evidence-based approaches to a defined set of future critical global trends impacting food systems.</p>
+EOT;
+
+  $html['services-hero'] = <<<EOT
+  <div class="service-hero text-center">
+    <i class="fa fa-cog fa-spin"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-cog fa-spin"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-cog fa-spin"></i>
+    <h1>Knowledge Platform Web Services</h1>
+    <h2>Turning knowledge into tools.</h2>
+  </div>
+EOT;
+
+  $html['services-websites'] = <<<EOT
+  <div class="service-purpose">
+    <i class="fa fa-cubes"></i>
+    <h2>Connect your data to other websites.</h2>
+    <p>The Knowledge Platform functions as a secure, robust date source for other websites.  As you work within the Knowledge Platform, the results of your work can be automatically shared with other websites and apps.  The way in which this is done is important, too&mdash;all resources are exposed using a full-featured, industry-standard interface that nearly every website can consume easily.</p>
+  </div>
+EOT;
+
+  $html['services-apps'] = <<<EOT
+  <div class="service-purpose">
+    <i class="fa fa-mobile"></i>
+    <h2>Power a smartphone app.</h2>
+    <p>The Knowledge Platform web services are bi-directional, meaning that a smartphone app can both contribute and consume content.  This can be a useful option, when the interaction with the Knowledge Platform is just too complex for a web page.  This could also enable you to combine data from the Knowledge Platform with data in other apps or services.</p>
+  </div>
+EOT;
+
+  $html['services-legacy'] = <<<EOT
+  <div class="service-purpose">
+    <i class="fa fa-desktop"></i>
+    <h2>Integrate with a legacy system.</h2>
+    <p>There's plenty of stable, mature software solutions already in the marketplace.  Any application that understands HTTP can use the Knowledge Platform's web services.  In cases where the Knowledge Platform is being used in conjunction with a legacy desktop app, this can cut down on double-entry and limit the time spent maintaining two separate systems.</p>
+  </div>
 EOT;
 
   $block->content = $html[$selection];
